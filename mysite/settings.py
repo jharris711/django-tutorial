@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,8 +76,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'postgres',
+        'HOST' : os.environ.get('SUPABASE_HOST'),
+        'PASSWORD': os.environ.get('SUPABASE_PASSWORD'),
+        'PORT': os.environ.get('SUPABASE_PORT'),
+        'USER': os.environ.get('SUPABASE_USER'),
+        'CERT' : os.environ.get('SUPABASE_CERT'),
     }
 }
 
@@ -105,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 
